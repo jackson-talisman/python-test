@@ -6,6 +6,6 @@ def hello(event, context):
         "message": "Go Serverless v4.0! Your function executed successfully!"
     }
 
-    ## Attempting to trigger CFN deployment
+    print(body)
 
     return {"statusCode": 200, "body": json.dumps(body)}
