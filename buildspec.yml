@@ -3,13 +3,17 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.12
+      nodejs: 16
+      python: 3.9
     commands:
+      - echo "Installing Serverless Framework"
       - npm install -g serverless
+      - echo "Installing Python dependencies"
       - pip install -r requirements.txt
   build:
     commands:
-      - serverless deploy
+      - echo "Deploying with Serverless Framework"
+      - serverless deploy --verbose
 artifacts:
   files:
     - "**/*"
