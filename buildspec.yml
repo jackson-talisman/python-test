@@ -1,9 +1,7 @@
 version: 0.2
 
 env:
-  name: dev
-  region: us-east-1
-  parameters:
+  variables:
     SERVERLESS_ACCESS_KEY: "AKoFEso2S3XegZm2WzHmEqxWmUausKrsRdpIuSKcD37lQ"
 
 phases:
