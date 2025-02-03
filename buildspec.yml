@@ -6,6 +6,11 @@ phases:
       nodejs: 16
       python: 3.9
     commands:
+      - echo "Installing Node.js and npm"
+      - curl -sL https://rpm.nodesource.com/setup_16.x | bash -
+      - yum install -y nodejs
+      - node -v  # Verify Node.js is installed
+      - npm -v   # Verify npm is installed
       - echo "Installing Serverless Framework"
       - npm install -g serverless
       - echo "Installing Python dependencies"
