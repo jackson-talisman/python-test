@@ -1,0 +1,12 @@
+service: serverless-python-lambda # NOTE: update this with your service name
+
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: python3.12
+  deploymentMethod: changesets
+
+functions:
+  hello:
+    handler: handler.hello
