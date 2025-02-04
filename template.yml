@@ -20,4 +20,4 @@ Resources:
               - python3.12
             RetentionPolicy: Retain
         Metadata:
-          BuildMethod: python3.8
+          BuildMethod: python3.12
