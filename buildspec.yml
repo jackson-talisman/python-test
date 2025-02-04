@@ -1,31 +1,20 @@
+# buildspec.yml
 version: 0.2
-
-env:
-  variables:
-    SERVERLESS_ACCESS_KEY: "AKoFEso2S3XegZm2WzHmEqxWmUausKrsRdpIuSKcD37lQ"
 
 phases:
   install:
     runtime-versions:
-      nodejs: 20
       python: 3.12
-    commands:
-      - echo "Installing Node.js and npm"
-      - curl -sL https://rpm.nodesource.com/setup_20.x | bash -
-      - node -v  # Verify Node.js is installed
-      - npm -v   # Verify npm is installed
-      - echo "Installing Serverless Framework"
-      - npm install -g serverless
-      - echo "Installing Python dependencies"
-      - pip install -r requirements.txt
-  pre_build:
-    commands:
-      - echo "Running pre-build commands"
-      - serverless login
+
+
   build:
     commands:
-      - echo "Deploying with Serverless Framework"
-      - serverless deploy --verbose
+      # LAMBDA_ARTIFACT_BUCKET should be an environment variable in AWS::CodeBuild::Project
+      - sam build
+      - sam deploy --s3-bucket $LAMBDA_ARTIFACT_BUCKET --stack-name $STACKNAME --capabilities CAPABILITY_NAMED_IAM
+
 artifacts:
+  type: zip
   files:
-    - "**/*"
+    - '**/*' 
+  base-directory: '.aws-sam/build'
